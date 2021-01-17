@@ -9,7 +9,19 @@ import {
 
 const GoogleStrategy = GooglePassport.Strategy;
 
-const userProfile = (profile) => {
+interface IOauthEmail {
+  value: string;
+  verified: boolean;
+}
+
+interface IOauthUser {
+  id: string;
+  emails: IOauthEmail[];
+  name: { familyName: string; givenName: string };
+  provider: string;
+}
+
+const userProfile = (profile: IOauthUser) => {
   const { id, name, emails, provider } = profile;
 
   let firstName;
@@ -29,6 +41,14 @@ const userProfile = (profile) => {
   };
 };
 
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (user: any, done) {
+  done(null, user);
+});
+
 passport.use(
   new GoogleStrategy(
     {
@@ -38,7 +58,7 @@ passport.use(
       scope: ['profile', 'email'],
       passReqToCallback: true,
     },
-    (_req, _accessToken, _refreshToken, profile, cb) =>
+    (_req, _accessToken, _refreshToken, profile: any, cb: any) =>
       cb(null, userProfile(profile))
   )
 );
