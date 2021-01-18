@@ -3,7 +3,8 @@ import express from 'express';
 import helmet from 'helmet';
 import passport from 'passport';
 
-import router from './routes/auth';
+import authRouter from './routes/auth';
+import homeRouter from './routes/home';
 
 require('./middleware/passport');
 
@@ -16,8 +17,9 @@ app.use(helmet());
 
 app.use(passport.initialize());
 
-app.use('/api/auth/google', router);
-app.use('/api/auth/google/callback', router);
+app.use('/', homeRouter);
+app.use('/api/auth/google', authRouter);
+app.use('/api/auth/google/callback', authRouter);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`App Listening on port ${PORT}`));

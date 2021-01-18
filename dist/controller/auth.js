@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logOutGoogleUser = exports.handleGoogleAuthError = exports.handleGoogleAuth = void 0;
+exports.handleGoogleAuth = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const constants_1 = require("../constants");
 const handleGoogleAuth = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -28,8 +28,4 @@ const handleGoogleAuth = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.handleGoogleAuth = handleGoogleAuth;
-const handleGoogleAuthError = () => { };
-exports.handleGoogleAuthError = handleGoogleAuthError;
-const logOutGoogleUser = () => { };
-exports.logOutGoogleUser = logOutGoogleUser;
 //# sourceMappingURL=auth.js.map

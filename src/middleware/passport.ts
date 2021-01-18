@@ -21,6 +21,7 @@ interface IOauthUser {
   provider: string;
 }
 
+// This function normalizes the profile Object gotten from Google
 const userProfile = (profile: IOauthUser) => {
   const { id, name, emails, provider } = profile;
 
@@ -41,12 +42,12 @@ const userProfile = (profile: IOauthUser) => {
   };
 };
 
-passport.serializeUser(function (user, done) {
-  done(null, user);
+passport.serializeUser(function (user: any, done) {
+  done(null, user.id);
 });
 
-passport.deserializeUser(function (user: any, done) {
-  done(null, user);
+passport.deserializeUser(function (id: any, done) {
+  done(null, id);
 });
 
 passport.use(
@@ -58,7 +59,7 @@ passport.use(
       scope: ['profile', 'email'],
       passReqToCallback: true,
     },
-    (_req, _accessToken, _refreshToken, profile: any, cb: any) =>
+    (_req: any, _accessToken: any, _refreshToken: any, profile: any, cb: any) =>
       cb(null, userProfile(profile))
   )
 );

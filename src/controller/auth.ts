@@ -9,6 +9,7 @@ export const handleGoogleAuth = async (req: Request, res: Response) => {
   // Then check if user exists in Database
 
   // If user does not exist, create new user and return token
+  // The code below shows only how to return token and user object from Google
   try {
     if (req.user) {
       const token = await jwt.sign(req.user, JWT_SECRET);
@@ -23,5 +24,3 @@ export const handleGoogleAuth = async (req: Request, res: Response) => {
   }
   // If user exists, find user, create token, and send to client
 };
-export const handleGoogleAuthError = () => {};
-export const logOutGoogleUser = () => {};

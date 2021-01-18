@@ -27,10 +27,10 @@ const userProfile = (profile) => {
     };
 };
 passport_1.default.serializeUser(function (user, done) {
-    done(null, user);
+    done(null, user.id);
 });
-passport_1.default.deserializeUser(function (user, done) {
-    done(null, user);
+passport_1.default.deserializeUser(function (id, done) {
+    done(null, id);
 });
 passport_1.default.use(new GoogleStrategy({
     clientID: constants_1.GOOGLE_CLIENT_ID,

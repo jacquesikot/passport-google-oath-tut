@@ -1,27 +1,19 @@
 import express from 'express';
 import passport from 'passport';
 
-const router = express.Router();
+import { handleGoogleAuth } from '../controller/auth';
 
-import {
-  handleGoogleAuth,
-  handleGoogleAuthError,
-  logOutGoogleUser,
-} from '../controller/auth';
+const authRouter = express.Router();
 
-router.get(
+authRouter.get(
   '/',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-router.get(
+authRouter.get(
   '/callback',
-  passport.authenticate('google', { failureRedirect: '/google/error' }),
+  passport.authenticate('google', { failureRedirect: '/' }),
   handleGoogleAuth
 );
 
-router.get('/error', handleGoogleAuthError);
-
-router.get('/logout', logOutGoogleUser);
-
-export default router;
+export default authRouter;
