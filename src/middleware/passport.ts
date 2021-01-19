@@ -1,6 +1,7 @@
 import passport from 'passport';
 import GooglePassport from 'passport-google-oauth20';
 
+// This is abstracted from the process.env and stored in a file called constants
 import {
   GOOGLE_CALLBACK_URL,
   GOOGLE_CLIENT_ID,
@@ -9,6 +10,7 @@ import {
 
 const GoogleStrategy = GooglePassport.Strategy;
 
+// These are the interfaces for the Auth User and Email
 interface IOauthEmail {
   value: string;
   verified: boolean;

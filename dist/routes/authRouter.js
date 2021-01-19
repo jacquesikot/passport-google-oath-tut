@@ -10,4 +10,4 @@ const authRouter = express_1.default.Router();
 authRouter.get('/', passport_1.default.authenticate('google', { scope: ['profile', 'email'] }));
 authRouter.get('/callback', passport_1.default.authenticate('google', { failureRedirect: '/' }), authController_1.handleGoogleAuth);
 exports.default = authRouter;
-//# sourceMappingURL=auth.js.map
+//# sourceMappingURL=authRouter.js.map

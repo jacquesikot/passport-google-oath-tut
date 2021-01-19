@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import { JWT_SECRET } from '../constants';
 
+// This function manages the google authentication from the callback route
 export const handleGoogleAuth = async (req: Request, res: Response) => {
   // Handle req.body validation and return 400 error if validation failed
 

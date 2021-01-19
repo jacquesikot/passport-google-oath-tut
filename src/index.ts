@@ -3,17 +3,20 @@ import express from 'express';
 import helmet from 'helmet';
 import passport from 'passport';
 
-import authRouter from './routes/auth';
+// Import  Routers
+import authRouter from './routes/authRouter';
 import homeRouter from './routes/home';
 
+// Require Passport midleware - without this your app wont work
 require('./middleware/passport');
 
 const app = express();
 
+// App middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(helmet());
+app.use(helmet()); // Helmet helps secure our http headers
 
 app.use(passport.initialize());
 
